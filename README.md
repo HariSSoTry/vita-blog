@@ -1,29 +1,33 @@
-# mini-blog
+# Мини-Блог Vita-Soft
 
-This template should help get you started developing with Vue 3 in Vite.
+Веб-приложение для ведения персональных блогов с системой комментариев, разработанное для компании Vita-Soft.
 
-## Recommended IDE Setup
+## Ключевые особенности
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+✅ **Полноценная блог-платформа** с системами постов и комментариев  
+✅ **Адаптивный интерфейс** с разными режимами отображения (десктоп/мобильный)  
+✅ **Интуитивный редактор** постов с валидацией полей  
+✅ **Быстрые переходы** между блогами разных пользователей  
+✅ **Гибкая система авторизации** с защитой API-запросов  
 
-## Customize configuration
+## Технологический стек
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- **Vue 3** (Composition API)
+- **Vuetify 3** (Material Design компоненты)
+- **Pinia** (управление состоянием)
+- **Vite** (сборка проекта)
+- **Axios** (работа с API)
 
-## Project Setup
+## Установка и запуск
 
-```sh
+1. Установите зависимости:
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+2. Запустите dev-сервер:
 npm run dev
-```
 
-### Compile and Minify for Production
-
-```sh
+3. Для production-сборки:
 npm run build
-```
+
+## Лицензия
+Проект разработан для компании Vita-Soft. Все права защищены.
