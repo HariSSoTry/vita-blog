@@ -1,7 +1,7 @@
 <template>
   <div class="blog">
     <div class="blog-header">
-      <h1 class="blog-name">{{ blog.blogName || `Блог пользователя ${props.id}` }}</h1>
+      <h1 class="blog-name">{{ blog.name || `Блог пользователя ${props.id}` }}</h1>
       <p class="author-name" v-if="blog.fullName">Автор: {{ blog.fullName }}</p>
     </div>
     
@@ -132,18 +132,18 @@ const showPostForm = () => {
 
 const fetchBlog = async () => {
   try {
-    // Получаем все данные пользователей
+    // Получаем все данные
     const response = await postsStore.fetchPosts()
     
-    // Находим нужного пользователя
-    const userPosts = postsStore.posts.filter(post => post.userInfoId == props.id)
+    // Находим нужного пользователя в оригинальных данных
+    const userData = response.users.find(user => user.id == props.id)
     
-    if (userPosts.length > 0) {
+    if (userData) {
       blog.value = {
-        id: props.id,
-        name: userPosts[0].userInfo || `Блог пользователя ${props.id}`,
-        fullName: userPosts[0].userInfo || '',
-        posts: userPosts
+        id: userData.id,
+        name: userData.blogName || `Блог пользователя ${userData.id}`,
+        fullName: userData.fullName || '',
+        posts: userData.post || []
       }
     } else {
       blog.value = {
