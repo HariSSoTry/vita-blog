@@ -12,7 +12,7 @@
     
     <v-btn value="users" to="/users" class="menu-btn" v-if="isAuthenticated">
       <v-icon>mdi-account-group</v-icon>
-      <span class="btn-text">Люди</span>
+      <span class="btn-text">Пользователи</span>
     </v-btn>
   </v-bottom-navigation>
 </template>
