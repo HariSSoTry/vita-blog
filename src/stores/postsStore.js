@@ -15,19 +15,28 @@ export const usePostsStore = defineStore('posts', {
       try {
         const response = await api.getUserInfos()
         
-        // Собираем все посты из всех пользователей
+        // Сохраняем оригинальные данные пользователей для использования в блогах
+        this.usersData = response.data
+        
+        // Собираем все посты из всех пользователей (ваша логика)
         this.posts = response.data.flatMap(user => 
           (user.post || []).map(post => ({
             ...post,
             userInfoId: user.id,
             userInfo: user.fullName || `Пользователь ${user.id}`,
+            blogName: user.blogName || `Блог пользователя ${user.id}`, // Добавляем название блога
             comments: post.comments || []
           }))
         )
         
-        // Сортируем по дате (новые сначала)
+        // Сортируем по дате (новые сначала) - ваша сортировка
         this.posts.sort((a, b) => new Date(b.dateTime) - new Date(a.dateTime))
-        return this.posts
+        
+        // Возвращаем и оригинальные данные пользователей, и обработанные посты
+        return {
+          users: response.data,
+          posts: this.posts
+        }
       } catch (error) {
         this.error = error
         console.error('Error fetching posts:', error)
