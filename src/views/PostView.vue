@@ -209,6 +209,7 @@ onMounted(async () => {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  padding-top: 68px; /* Добавляем отступ равный высоте AppBar */
 }
 
 .summary {

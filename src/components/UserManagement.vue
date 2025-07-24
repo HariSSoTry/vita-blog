@@ -1,73 +1,73 @@
 <template>
   <div class="user-management">
-    <h2>Управление пользователями</h2>
-    
-    <button @click="showUserForm = true" class="create-user-btn">
-      Создать нового пользователя
-    </button>
-    
-    <div v-if="showUserForm" class="user-form">
-      <h3>Новый пользователь</h3>
-      <form @submit.prevent="handleSubmit">
-        <div class="form-group">
-          <label for="fullName">Полное имя*</label>
-          <input
-            type="text"
-            id="fullName"
-            v-model="userForm.fullName"
-            required
-            maxlength="50"
-            placeholder="Введите полное имя"
-          />
-        </div>
-        
-        <div class="form-group">
-          <label for="blogName">Название блога*</label>
-          <input
-            type="text"
-            id="blogName"
-            v-model="userForm.blogName"
-            required
-            maxlength="50"
-            placeholder="Введите название блога"
-          />
-        </div>
-        
-        <div class="form-actions">
-          <button type="button" @click="cancelForm" class="cancel-btn">
-            Отмена
-          </button>
-          <button type="submit" class="submit-btn">
-            Создать
-          </button>
-        </div>
-      </form>
-    </div>
-    
-    <div v-if="loading">Загрузка...</div>
-    <div v-else-if="error" class="error">{{ error }}</div>
-    <div v-else>
-      <div v-if="users.length === 0" class="no-users">
-        Нет зарегистрированных пользователей
-      </div>
-      <div v-else class="users-list">
-        <div v-for="user in users" :key="user.id" class="user-card">
-          <div class="user-info" @click="goToBlog(user.id)">
-            <h3>{{ user.fullName }}</h3>
-            <p>Блог: {{ user.blogName }}</p>
-            <p>ID: {{ user.id }}</p>
-            <p>Постов: {{ user.post?.length || 0 }}</p>
+    <div id="page-top"></div>
+      <h2>Управление пользователями</h2>
+      <button @click="showUserForm = true" class="create-user-btn">
+        Создать нового пользователя
+      </button>
+      
+      <div v-if="showUserForm" class="user-form">
+        <h3>Новый пользователь</h3>
+        <form @submit.prevent="handleSubmit">
+          <div class="form-group">
+            <label for="fullName">Полное имя*</label>
+            <input
+              type="text"
+              id="fullName"
+              v-model="userForm.fullName"
+              required
+              maxlength="50"
+              placeholder="Введите полное имя"
+            />
           </div>
-          <button 
-            @click="deleteUser(user.id)" 
-            class="delete-btn"
-            v-if="isAuthenticated"
-          >
-            Удалить
-          </button>
+          
+          <div class="form-group">
+            <label for="blogName">Название блога*</label>
+            <input
+              type="text"
+              id="blogName"
+              v-model="userForm.blogName"
+              required
+              maxlength="50"
+              placeholder="Введите название блога"
+            />
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" @click="cancelForm" class="cancel-btn">
+              Отмена
+            </button>
+            <button type="submit" class="submit-btn">
+              Создать
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <div v-if="loading">Загрузка...</div>
+      <div v-else-if="error" class="error">{{ error }}</div>
+      <div v-else>
+        <div v-if="users.length === 0" class="no-users">
+          Нет зарегистрированных пользователей
+        </div>
+        <div v-else class="users-list">
+          <div v-for="user in users" :key="user.id" class="user-card">
+            <div class="user-info" @click="goToBlog(user.id)">
+              <h3>{{ user.fullName }}</h3>
+              <p>Блог: {{ user.blogName }}</p>
+              <p>ID: {{ user.id }}</p>
+              <p>Постов: {{ user.post?.length || 0 }}</p>
+            </div>
+            <button 
+              @click="deleteUser(user.id)" 
+              class="delete-btn"
+              v-if="isAuthenticated"
+            >
+              Удалить
+            </button>
+          </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -136,6 +136,8 @@ const goToBlog = (userId) => {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  padding-top: 56px; /* Высота AppBar */
+  min-height: 100vh;
 }
 
 .create-user-btn {

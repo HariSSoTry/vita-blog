@@ -181,15 +181,28 @@ const menuItems = computed(() => [
 }
 
 .sidebar-item :deep(.v-list-item__prepend) {
-  margin-right: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .compact-icon {
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .v-navigation-drawer--floating:not(.v-navigation-drawer--temporary) {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-list {
+  padding: 0;
 }
 
 .compact-active {
